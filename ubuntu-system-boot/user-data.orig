@@ -1,0 +1,6 @@
+package_update: true
+package_upgrade: true
+runcmd:
+- [ curl, -L, https://<GH_PAT>@raw.githubusercontent.com/ekiczek/raspberry-pi-k8s/master/bootstrap.sh, --output, /home/ubuntu/bootstrap.sh ]
+- [ chmod, +x, /home/ubuntu/bootstrap.sh ]
+- [ /home/ubuntu/bootstrap.sh, <MASTER_IP>, <K8S_BOOTSTRAP_TOKEN> ]
