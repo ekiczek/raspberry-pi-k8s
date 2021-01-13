@@ -44,6 +44,11 @@ Once you determine the IP for the master, make a note of it for use later in the
    1. Finally, press the "Write" button to write the `.img.xz` file to SD card.
    1. When complete, remove the MicroSD card from the USB MicroSD Card Reader and put the SD card in the Pi.
 1. When ready, re-connect the power cable for the cluster. The `bootstrap.sh` script will execute on each Pi. It will install Kubernetes (with the Flannel CNI add-on) and then reboot. The master will create the cluster and the nodes will join the cluster. After about 5-7 minutes, the cluster will be ready.
+#### Optional Post-Installation Steps
+1. SSH into the master, e.g. `ssh ubuntu@<MASTER_IP>` and run `kubectl get nodes`. Confirm the master and all nodes are registered and in a Ready state.
+1. Install `kubectl` locally. For example, you can install it using HomeBrew with `brew install kubectl`.
+1. With `kubectl` installed, copy the cluster configuration file to your local computer so that you can use `kubectl` locally to work with the cluster. Run `scp ubuntu@<MASTER_IP>:/home/ubuntu/.kube/config .kube/.` to grab the configuration file.
+1. SSH into each of the nodes and change the default passwords to a secure password.
 
 ### On Windows
 1. TBD
