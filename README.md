@@ -29,7 +29,7 @@ Once you determine the IP for the master, make a note of it for use later in the
 1. From this repo, copy `ubuntu-system-boot/network-config.orig` to `ubuntu-system-boot/network-config` and modify the file with your local network settings.
 1. In Terminal, replace your network settings from the previous step to the default settings file by running (from the main `raspberry-pi-k8s` directory):
    ```cat ubuntu-system-boot/network-config > /Volumes/system-boot/network-config```
-1. Also from this repo, copy `ubuntu-system-boot/user-data.orig` to `ubuntu-system-boot/user-data` and modify the file, replacing these values:
+1. Also from this repo, copy `ubuntu-system-boot/user-data.orig` to `ubuntu-system-boot/user-data`. If you are planning to use the [MetalLB Kubernetes load balancer](https://metallb.universe.tf), un-comment the line which sets the `ENABLE_PROMISCUOUS_MODE` environment variable.Then, modify these values:
    * `<MASTER_IP>`: the IP address of the desired Kubernetes master
    * `<K8S_BOOTSTRAP_TOKEN>`: the Kubernetes bootstrap token, e.g., `07401b.f395accd246ae52d`
 1. In Terminal, append your first boot instructions from the previous step to the default first boot file by running (from the main `raspberry-pi-k8s` directory):

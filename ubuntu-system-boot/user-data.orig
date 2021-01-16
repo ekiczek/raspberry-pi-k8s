@@ -1,6 +1,8 @@
 package_update: true
 package_upgrade: true
 runcmd:
+# Un-comment the line below to enable promiscuous mode. This is required later if using the MetalLB load balancer.
+# - [ export, ENABLE_PROMISCUOUS_MODE=True ]
 - [ curl, -L, https://<GH_PAT>@raw.githubusercontent.com/ekiczek/raspberry-pi-k8s/master/bootstrap.sh, --output, /home/ubuntu/bootstrap.sh ]
 - [ chmod, +x, /home/ubuntu/bootstrap.sh ]
 - [ /home/ubuntu/bootstrap.sh, <MASTER_IP>, <K8S_BOOTSTRAP_TOKEN> ]
