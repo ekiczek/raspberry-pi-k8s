@@ -93,7 +93,7 @@ EOF
     sudo ip link set wlan0 promisc on
     sudo chmod 757 /etc/cron.d
     sudo cat > /etc/cron.d/enable_promiscuous_mode <<EOF
-@reboot sudo ip link set wlan0 promisc on
+@reboot root sudo ip link set wlan0 promisc on
 EOF
     sudo chmod 755 /etc/cron.d
   fi
@@ -131,7 +131,7 @@ EOF
     sudo ip link set wlan0 promisc on
     sudo chmod 757 /etc/cron.d
     sudo cat > /etc/cron.d/enable_promiscuous_mode <<EOF
-@reboot sudo ip link set wlan0 promisc on
+@reboot root sudo ip link set wlan0 promisc on
 EOF
     sudo chmod 755 /etc/cron.d
   fi
