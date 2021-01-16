@@ -72,7 +72,9 @@ sudo chown ubuntu:ubuntu /home/ubuntu/.kube/config
 # Download the Flannel YAML data and apply it
 curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.13.0/Documentation/kube-flannel.yml | kubectl apply -f -
 
-rm -f /home/ubuntu/startup.sh
+# Remove startup script after this run
+sudo rm -f /home/ubuntu/startup.sh
+sudo rm /etc/cron.d/run_setup
 EOF
   sudo chmod 755 /home/ubuntu/startup.sh
 
@@ -82,6 +84,19 @@ EOF
 @reboot root sleep 60 && /home/ubuntu/startup.sh
 EOF
   sudo chmod 755 /etc/cron.d
+
+  # Enable promiscuous mode if ENABLE_PROMISCUOUS_MODE is set
+  if [ ! -z "${ENABLE_PROMISCUOUS_MODE}" ]
+  then
+
+    # Enable promiscuous mode and enable on every boot
+    sudo ip link set wlan0 promisc on
+    sudo chmod 757 /etc/cron.d
+    sudo cat > /etc/cron.d/enable_promiscuous_mode <<EOF
+@reboot root sudo ip link set wlan0 promisc on
+EOF
+    sudo chmod 755 /etc/cron.d
+  fi
 else
   # K8s can't have all nodes called ubuntu, must have unique names, so set worker node names to
   # "node" plus last octet of the wifi IP address
@@ -95,7 +110,9 @@ sleep 600
 # This allows us to pre-configure a token and then skip the CA cert hash (less secure, but good enough for our requirements):
 sudo kubeadm join $1:6443 --token $2 --discovery-token-unsafe-skip-ca-verification
 
-rm -f /home/ubuntu/startup.sh
+# Remove startup script after this run
+sudo rm -f /home/ubuntu/startup.sh
+sudo rm /etc/cron.d/run_setup
 EOF
   sudo chmod 755 /home/ubuntu/startup.sh
 
@@ -105,6 +122,19 @@ EOF
 @reboot root sleep 60 && /home/ubuntu/startup.sh
 EOF
   sudo chmod 755 /etc/cron.d
+
+  # Enable promiscuous mode if ENABLE_PROMISCUOUS_MODE is set
+  if [ ! -z "${ENABLE_PROMISCUOUS_MODE}" ]
+  then
+
+    # Enable promiscuous mode and enable on every boot
+    sudo ip link set wlan0 promisc on
+    sudo chmod 757 /etc/cron.d
+    sudo cat > /etc/cron.d/enable_promiscuous_mode <<EOF
+@reboot root sudo ip link set wlan0 promisc on
+EOF
+    sudo chmod 755 /etc/cron.d
+  fi
 fi
 
 # Cleanup after this script
