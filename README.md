@@ -49,6 +49,7 @@ Once you determine the IP for the master, make a note of it for use later in the
 1. Install `kubectl` locally. For example, you can install it using HomeBrew with `brew install kubectl`.
 1. With `kubectl` installed, copy the cluster configuration file to your local computer so that you can use `kubectl` locally to work with the cluster. Run `scp ubuntu@<MASTER_IP>:/home/ubuntu/.kube/config .kube/.` to grab the configuration file.
 1. SSH into each of the nodes and change the default passwords to a secure password.
+1. Install additional items on the cluster like linkerd, MetalLB and some sample apps via https://github.com/ekiczek/raspberry-pi-k8s-cluster-basics.
 
 ### On Windows
 1. TBD
