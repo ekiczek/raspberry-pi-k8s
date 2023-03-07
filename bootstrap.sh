@@ -57,7 +57,7 @@ then
 
   # Write a startup script for next boot
   sudo cat > /home/ubuntu/startup.sh <<EOF
-sudo kubeadm init --token=$2 --kubernetes-version=v1.20.0 --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --token=$2 --pod-network-cidr=10.244.0.0/16
 
 mkdir -p /root/.kube
 sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
@@ -70,7 +70,7 @@ sudo chown ubuntu:ubuntu /home/ubuntu/.kube
 sudo chown ubuntu:ubuntu /home/ubuntu/.kube/config
 
 # Download the Flannel YAML data and apply it
-curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.13.0/Documentation/kube-flannel.yml | kubectl apply -f -
+curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.21.2/Documentation/kube-flannel.yml | kubectl apply -f -
 
 # Remove startup script after this run
 sudo rm -f /home/ubuntu/startup.sh
