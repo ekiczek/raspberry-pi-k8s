@@ -13,10 +13,10 @@ I wanted to learn more about how Kubernetes works _after_ you set up the basics,
 ## Assemble the basics
 1. Purchase and assemble the items in the [Hardware Inventory](#hardware-inventory). It should look something like: ![Raspberry Pi Cluster](PiCluster.jpg)
 1. Download and install the Raspberry Pi Imager for your operating system: https://www.raspberrypi.org/downloads/.
-1. Download the latest Ubuntu Server 64-bit image from https://ubuntu.com/download/raspberry-pi. Currently Ubuntu Server 20.10 64-bit is recommended: https://ubuntu.com/download/raspberry-pi/thank-you?version=20.10&architecture=server-arm64+raspi. The result should be a single `.img.xz` file.
+1. Download the latest Ubuntu Server 64-bit image from https://ubuntu.com/download/raspberry-pi. Currently Ubuntu Server 22.04.2 64-bit for Raspberry Pi 4 is recommended: https://ubuntu.com/download/raspberry-pi/thank-you?version=22.04.2&architecture=server-arm64+raspi. The result should be a single `.img.xz` file.
 
 ## Determine the IP address of the master
-This part is... complicated. First, determine which Pi will be the master of the cluster. Then, determining the IP address of the master depends on the network setup as well as the operating system you are using to write images to the MicroSD card.
+The automation in this repo depends upon knowing the IP address of the cluster's master node. Determine which Pi will be the master node of the cluster. Then, determining the IP address of the master depends on the network setup as well as the operating system you are using to write images to the MicroSD card.
 
 For example, my network allows any device to join (with a password), provides DHCP and unofficially reserves IPs (because I have so few devices). In this case, I use the instructions below to add my wifi info to an Ubuntu MicroSD image and boot the Pi. I can then see the device via my router admin pages or I can attach a keyboard and mouse to login and get the IP.
 
