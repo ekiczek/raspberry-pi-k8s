@@ -8,7 +8,7 @@
 sudo apt install -y docker.io
 
 # Fixing a problem with flannel, solution discussed at https://www.learnlinux.tv/quick-fix-crashloopbackoff-while-building-a-kubernetes-cluster-with-ubuntu-22-04-on-the-raspberry-pi/
-sudo apt install -y linux-modules-extra-raspi
+sudo apt update && sudo apt install -y linux-modules-extra-raspi
 
 # Add the packages.cloud.google.com atp key
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
