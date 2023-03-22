@@ -45,7 +45,7 @@ sudo chown ubuntu:ubuntu /home/ubuntu/.kube
 sudo chown ubuntu:ubuntu /home/ubuntu/.kube/config
 
 # Download the Flannel YAML data and apply it
-curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.21.2/Documentation/kube-flannel.yml | kubectl apply -f -
+curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.21.3/Documentation/kube-flannel.yml | kubectl apply -f -
 
 # Remove startup script after this run
 sudo rm -f /home/ubuntu/startup.sh
