@@ -2,7 +2,7 @@
 
 This repo contains details to build your own 3-node Raspberry Pi cluster with Kubernetes.
 
-The cluster consists of 3 Raspberry Pi 4s mounted in a Pi cluster case. They are powered via a USB charger and optionally networked via Cat6 ethernet cables and a switch. Although I purchased the wired networking materials, in the end I decided to network them via my home wifi network, so these materials were ultimately unnecessary.
+The cluster consists of 3 Raspberry Pi 4s mounted in a Pi cluster case. They are powered via a USB charger and optionally networked via Cat6 ethernet cables and a switch. Although I purchased the wired networking materials, I eventually decided to network them via my home wifi network, so these materials were ultimately unnecessary.
 
 The Kubernetes cluster in this example consists of 1 master and 2 compute nodes. The master is determined by hardcoding the IP of the master as instructed below. During setup, that Pi will execute instructions to become the master of the cluster, and the other Pis will execute instructions to become nodes. You'll see, it's cool. :-)
 
@@ -16,7 +16,7 @@ I wanted to learn more about how Kubernetes works _after_ you set up the basics,
 1. Download the latest Ubuntu Server 64-bit image from https://ubuntu.com/download/raspberry-pi. Currently Ubuntu Server 22.04.2 64-bit for Raspberry Pi 4 is recommended: https://ubuntu.com/download/raspberry-pi/thank-you?version=22.04.2&architecture=server-arm64+raspi. The result should be a single `.img.xz` file.
 
 ## Determine the IP address of the master
-The automation in this repo depends upon knowing the IP address of the cluster's master node. Determine which Pi will be the master node of the cluster. Then, determining the IP address of the master depends on the network setup as well as the operating system you are using to write images to the MicroSD card.
+The automation in this repo requires the IP address of the cluster's master node. Determine which Pi will be the master node of the cluster. Then, determining the IP address of the master depends on the network setup as well as the operating system you are using to write images to the MicroSD card.
 
 For example, my network allows any device to join (with a password), provides DHCP and unofficially reserves IPs (because I have so few devices). In this case, I use the instructions below to add my wifi info to an Ubuntu MicroSD image and boot the Pi. I can then see the device via my router admin pages or I can attach a keyboard and mouse to login and get the IP.
 
@@ -47,7 +47,7 @@ Once you determine the IP for the master, make a note of it for use later in the
 #### Optional Post-Installation Steps
 1. SSH into the master, e.g. `ssh ubuntu@<MASTER_IP>` and run `kubectl get nodes`. Confirm the master and all nodes are registered and in a Ready state.
 1. Install `kubectl` locally. For example, you can install it using HomeBrew with `brew install kubectl`.
-1. With `kubectl` installed, copy the cluster configuration file to your local computer so that you can use `kubectl` locally to work with the cluster. Run `scp ubuntu@<MASTER_IP>:/home/ubuntu/.kube/config .kube/.` to grab the configuration file.
+1. With `kubectl` installed, copy the cluster configuration file to your local computer so that you can use `kubectl` locally to work with the cluster. Run `scp ubuntu@<MASTER_IP>:/home/ubuntu/.kube/config ~/.kube/.` to grab the configuration file.
 1. SSH into each of the nodes and change the default passwords to a secure password.
 1. Install additional items on the cluster like linkerd, MetalLB and some sample apps via https://github.com/ekiczek/raspberry-pi-k8s-cluster-basics.
 
